@@ -23,7 +23,7 @@ li,i,img{
   left: 0;
   height: 100%;
   width: 260px;
-  background: #11101d;
+  background: #222831;
   z-index: 100;
   transition: all 0.5s ease;
 }
@@ -224,7 +224,7 @@ li,i,img{
 }
 .home-section{
   position: relative;
-  background-color: #151515;
+  background-color: #31363F;
   
   height: 100%;
   left: 260px;

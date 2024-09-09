@@ -28,7 +28,6 @@ const sidebar = document.querySelector<HTMLElement>(".sidebar");
   <Home/>
   </section>
 
-    {/* <Home/> */}
     </>
   )
 }

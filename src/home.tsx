@@ -31,7 +31,7 @@ export const Home = () => {
       poster_url: "https://cdn.marvel.com/content/1x/xfact2024002_cover.jpg",
       title: "Dygeek",
       overview:
-        "Marvel and Pop Culture fan can look up series, comics and events of their favorite characters.",
+        "Marvel and Pop Culture fan can look up series, comics and events of their .",
       genre: ["Sci-Fi", "Thriller"],
       release_date: "06/02/2023",
       vote_average: 6.0,
@@ -50,7 +50,7 @@ export const Home = () => {
       poster_url: "https://cdn.marvel.com/content/1x/xfact2024002_cover.jpg",
       title: "Best Movie",
       overview:
-        " comics and events of their favorite characters.  Pop Culture fan can look up series,",
+        " Comics and events of their favorite characters.  Pop Culture fan can look up series,",
       genre: ["Action", "Horror"],
       release_date: "03/22/2008",
       vote_average: 6.0,
