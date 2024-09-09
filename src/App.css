@@ -225,6 +225,7 @@ li,i,img{
 .home-section{
   position: relative;
   background-color: #151515;
+  
   height: 100%;
   left: 260px;
   width: calc(100% - 260px);

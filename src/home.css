@@ -1,4 +1,6 @@
-
+.content-container{
+  width: 100%;
+}
 
 .profile-picture {
   width: 32px;
@@ -80,7 +82,6 @@
 }
 
 .movie-list-item-title {
-  background-color: #333;
   padding: 0 10px;
   font-size: 32px;
   font-weight: bold;
@@ -92,7 +93,6 @@
 }
 
 .movie-list-item-desc {
-  background-color: #333;
   padding: 10px;
   font-size: 14px;
   position: absolute;
