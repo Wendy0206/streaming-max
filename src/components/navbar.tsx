@@ -1,11 +1,9 @@
 
-import './App.css'
-import logo from './assets/deadpool.jpeg'
-import {  useEffect, useState } from 'react'
+import '../styles/App.css'
+import logo from '../assets/deadpool.jpeg'
+import {  useEffect } from 'react'
 
 export const Navbar=()=> {
-
-
 
 useEffect(()=>{
 launch_menu();
@@ -34,8 +32,29 @@ const launch_menu = (): void => {
 
 };
 
+ const genres = [
+    { name: "Action", id: 28 },
+    { name: "Adventure", id: 12 },
+    { name: "Animation", id: 16 },
+    { name: "Comedy", id: 35 },
+    { name: "Crime", id: 80 },
+    { name: "Documentary", id: 99 },
+    { name: "Drama", id: 18 },
+    { name: "Family", id: 10751 },
+    { name: "Fantasy", id: 14 },
+    { name: "History", id: 36 },
+    { name: "Horror", id: 27 },
+    { name: "Music", id: 10402 },
+    { name: "Mystery", id: 9648 },
+    { name: "Romance", id: 10749 },
+    { name: "Sci-Fi", id: 878 },
+    { name: "TV movie", id: 10770 },
+    { name: "Thriller", id: 53 },
+    { name: "War", id: 10752 },
+    { name: "Western", id: 37 }
+  ];
 
-
+// add scollbar to the genre list
 
   return (
     
@@ -55,11 +74,11 @@ const launch_menu = (): void => {
       </li>
           <li>
         <a href="#">
-        <i className='bx bx-movie-play' ></i>
+        <i className='bx bxs-heart' ></i>
           <span className="link_name">Movies</span>
         </a>
         <ul className="sub-menu blank">
-          <li><a className="link_name" href="#">there you are</a></li>
+          <li><a className="link_name" href="#">Favorites</a></li>
         </ul>
       </li>
       <li>
@@ -72,27 +91,15 @@ const launch_menu = (): void => {
         </div>
         <ul className="sub-menu">
           <li><a className="link_name" href="#">Genre</a></li>
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Comedy</a></li>
-          <li><a href="#">Romance</a></li>
-           <li><a href="#">Thriller</a></li>
+          {genres.map((genre)=>(
+<li><a href="#">{genre.name}</a></li>
+
+          ))}
+          
+        
         </ul>
       </li>
-      <li>
-        <div className="iocn-link">
-          <a href="#">
-       <i className='bx bx-movie-play' ></i>
-            <span className="link_name">Tv Shows</span>
-          </a>
-          <i className='bx bxs-chevron-down arrow' ></i>
-        </div>
-        <ul className="sub-menu">
-          <li><a className="link_name" href="#">TV Shows</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Login Form</a></li>
-          <li><a href="#">Card Design</a></li>
-        </ul>
-      </li>
+    
 
   <li>
         <a href="#">

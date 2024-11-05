@@ -1,63 +1,39 @@
-import { Navbar } from './components/navbar'
-import './styles/App.css'
-import './styles/home.css'
-import './styles/movieCard.css'
-import { Home } from './components/home';
-import { Training } from './components/training';
-import { Loading } from './components/loading';
+import "../styles/loading.css";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useState, useEffect } from 'react';
-
-function App() {
-
-//const path_base: string = "http://localhost:4000/upload-movies";
-
-   const [isLoading, setIsLoading] = useState(true);
-//const [userMoviesData, setUserMoviesData] = useState<any>(null);
-  interface eachMovie {
-      id: number;
-    title: string;
-    overview: string;
-    genre: string[];
-    poster_url: string;
-    release_date: string;
-    vote_average: number;
-  }
-   const getUserMovies = async (): Promise<any> => {
-  const path_base: string = ""; // Set your API endpoint here
-
-  try {
-    const response = await axios.get(path_base);
-    
-    // Extract movies, favorites, and watchLater directly
-    const { movies, favorites, watchLater } = response.data;
-
-    // Return the combined data in one object
-    return { movies, favorites, watchLater };
-
-  } catch (error) {
-    console.error(error);
-    return {}; // Return an empty object on error
-  }
-};
 
 
- useEffect(() => {
 
-//    const fetchData = async () => {
-//       const data = await getUserMovies();
-//       setUserMoviesData(data);  // Store the fetched data
-//       setIsLoading(false);  
-//    };
 
-// fetchData(); 
-  const timeout = setTimeout(() => {
-      setIsLoading(false);  // Set loading to false after 2.5 seconds
-    }, 2500);
-return () => clearTimeout(timeout);
-  }, []);
 
-  const moviesList=[
+
+export const Training = () => {
+ // console.log("this component just re-rendered.............");
+
+  const genres = [
+    { name: "Action", id_g: 28 },
+    { name: "Adventure", id_g: 12 },
+    { name: "Animation", id_g: 16 },
+    { name: "Comedy", id_g: 35 },
+    { name: "Crime", id_g: 80 },
+    { name: "Documentary", id_g: 99 },
+    { name: "Drama", id_g: 18 },
+    { name: "Family", id_g: 10751 },
+    { name: "Fantasy", id_g: 14 },
+    { name: "History", id_g: 36 },
+    { name: "Horror", id_g: 27 },
+    { name: "Music", id_g: 10402 },
+    { name: "Mystery", id_g: 9648 },
+    { name: "Romance", id_g: 10749 },
+    { name: "Sci-Fi", id_g: 878 },
+    { name: "TV movie", id_g: 10770 },
+    { name: "Thriller", id_g: 53 },
+    { name: "War", id_g: 10752 },
+    { name: "Western", id_g: 37 }
+  ];
+
+
+  const moviesall=[
     {
         "id": 912649,
         "title": "Venom: The Last Dance",
@@ -316,39 +292,207 @@ return () => clearTimeout(timeout);
     }
 ];
 
+//const apiKey = process.env.API_KEY;
+const based_url="https://congenial-cod-x55q9xw6jq94hrw4-4000.app.github.dev" 
+ // const path_base: string = "http://localhost:4000/movies/user/watch-later";
 
-const userMoviesData={
-  movies: moviesList.slice(0,6),
-  favorites: moviesList.slice(7,13),
-  watchLater:moviesList.slice(14,19)
-}
 
-const menu_on_off = (): void => {
-
-const sidebar = document.querySelector<HTMLElement>(".sidebar");
-
-  if (sidebar) {
- sidebar.classList.toggle("close");
+const path_url: string =based_url+"/login";
+  interface eachMovie {
+    id: number;
+    title: string;
+    overview: string;
+    poster_url: string;
+    release_date: string;
+    score: number;
+    genre: number[];
   }
-}
+
+// Define a type for the all_movies state
+type AllMovies = {
+  [key: string]: eachMovie[]; // Use string keys for categories, each key points to an array of EachMovie
+};
+
+
+
+  useEffect(() => {
+// getMovies('upcoming').then(movies => {
+//   //test_node2(movies);
+// });
+  }, []);
+
+
+
+
+
+
+
+
+
+
+  const test_node = () => {
+    let current_user = { username: "ddddd", password: "123456"};
+  
+const requestOptions: RequestInit = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+    credentials: 'include',
+  body: JSON.stringify(current_user),
+};
+
+    fetch(path_url, requestOptions)
+  //  fetch(based_url)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json(); //Assuming you're sending JSON data
+      })
+      .then((response) => {
+        console.log("Node express backend reponse ", response);
+      })
+      .catch((error) => console.log(error));
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const test_node2 = (movies:eachMovie[]) => {
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    //  credentials: "include",
+      body: JSON.stringify(movies),
+    };
+
+    fetch(path_base, requestOptions)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json(); // Assuming you're sending JSON data
+      })
+       .then((response) => {
+        console.log("Node express backend ", response);
+      })
+      .catch((error) => console.log(error));
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const getMovies = async (category: string): Promise<any[]> => {
+  const path_base: string = "https://image.tmdb.org/t/p/w500/";
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${category}?api_key=d690e22cc305f26ee731e993dbe748f7`
+    );
+
+    const newArray = response.data.results;
+
+    const newArray2 = newArray.map((elm) => {
+      return {
+        id:  elm.id,
+        title: elm.original_title,
+        overview: elm.overview.slice(0, 80) + "...",
+        poster_url: path_base + elm.poster_path,
+        genre: elm.genre_ids,
+        score: elm.vote_average,
+        release_date: elm.release_date,
+      };
+    });
+    console.log('this is the refined data : ',newArray2)
+    return newArray2; // Return the refined array
+
+  } catch (error) {
+    console.error(error);
+    return []; // Return an empty array on error
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
-    <div className='all_container'>
-  
-     <Navbar/>
-       <section className="home-section">
-    <div className="home-content">
-      <i className='bx bx-menu' onClick={()=>menu_on_off()}></i>
-      <span className="text">Streaming +</span>
+    <div>
+      <div className="content-container2">
+        <legend>Create an account</legend>
+        <input
+          type="text"
+          id="username"
+          placeholder="Username"
+          name="username"
+          autoComplete="off"
+        />
+        <br /> <br />
+        <input
+          type="email"
+          id="email"
+          placeholder="Email"
+          name="email"
+          autoComplete="off"
+        />
+        <br /> <br />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          name="password"
+          autoComplete="off"
+        />
+        <br /> <br />
+        <button onClick={test_node}>Sign in</button>
+      </div>
     </div>
-   {isLoading? <Loading /> : <Home movies={userMoviesData?.movies} favorites={userMoviesData?.favorites} watchLater={userMoviesData?.watchLater} />}
+  );
+};
 
-  </section>
 
 
-    </div>
-  )
-}
-
-export default App

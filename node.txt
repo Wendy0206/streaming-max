@@ -1,0 +1,5 @@
+Status code usage
+202 = ok
+starts with 4 is from the db
+
+start with 5 is from the api -
